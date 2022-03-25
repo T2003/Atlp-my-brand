@@ -1,9 +1,7 @@
-let sidebar = document.querySelector(".sidebar");
-let sidebarBtn = document.querySelector(".sidebarBtn");
-sidebarBtn.onclick = function() {
-  sidebar.classList.toggle("active");
-  if(sidebar.classList.contains("active")){
-  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
-}else
-  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+let isOn=false;
+const showMenu=()=>{
+    const div=document.querySelectorAll(".mobile-menu");
+isOn?div[0].style.display="none": div[0].style.display="flex";
+isOn=!isOn;
 }
+document.getElementById("showMenu").addEventListener('click', showMenu);

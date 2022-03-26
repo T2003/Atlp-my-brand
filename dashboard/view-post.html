@@ -1,117 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<head>
+<html lang="en" dir="ltr">
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> D-Designer | Dashboard </title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <title>D-Dashboard</title>
-</head>
-
+ 
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+         
+     </style>
+   </head>
 <body>
-    <section class="header">
-        <div class="container">
-            <div class="row-noChange">
-                <div class="log">
-                    <a href="index.html">
-                        <h1>D-Designer</h1>
-                    </a>
-                </div>
-                <div class="side">
-                    <div class="user">
-                        Daniel T <span>
-                            <img src="./images/ant-design_caret-down-filled.png" alt="">
-                        </span>
-                    </div>
-                    <div class="mobile-nav">
-                        <img src="/images/bx_menu.png" alt="" id="showMenu">
-                    </div>
-                </div>
+  <div class="sidebar">
+    <div class="logo-details">
+        <i class='bx bx-user-circle' title="D-Designer"></i>
+      <span class="logo_name">D-Designer</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+            <a href="profile.html">
+              <i class=' bx bx-user-circle' ></i>
+              <span class="links_name">Profile</span>
+            </a>
+          </li>
+        <li>
+          <a href="new-post.html">
+            <i class=' bx bx-add-to-queue' ></i>
+            <span class="links_name">New Post</span>
+          </a>
+        </li>
+        <li>
+          <a href="message.html">
+            <i class='bx bx-message-detail' ></i>
+            <span class="links_name">Messages</span>
+          </a>
+        </li>
+        <li>
+          <a href="setting.html">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="login.html">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard"></span>
+      </div>
+      <div class="">
+        <h2>View Posted Blog</h2>
+      </div>
+      <div class="profile-details">
+        <img src="assets/img/e.jpg" alt="">
+        <span class="admin_name">Daniel T</span>
+        <i class='bx bx-chevron-down' ></i>
+      </div>
+    </nav>
 
-            </div>
-            <div class="mobile-menu">
-                <a href="./index.html">
-                    <div class="menu-item">
-                        Dashboard
-                    </div>
-
-                </a>
-
-                <a href="new-post.html">
-                    <div class="menu-item">
-                        New Post
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div class="menu-item">
-                        View Post
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section>
-    <section class="body">
-        <div class="row-start">
-            <div class="menu">
-                <a href="index.html">
-                    <div class="menu-item">
-                        <img src="./images/Vector.png" alt=""> Dashboard
-                    </div>
-
-                </a>
-                <hr>
-                <a href="./new-post.html">
-                    <div class="menu-item">
-                        <img src="./images/Vector-1.png" alt=""> New Article
-                    </div>
-                </a>
-                <hr>
-                <a href="#">
-                    <div class="menu-item">
-                        <img src="./images/ic_twotone-article.png" alt=""> View Article
-                    </div>
-                </a>
-                <hr>
-            </div>
-            <div class="content">
-                <h1>View Uploaded post</h1>
-                <hr>
+    <div class="home-content">
+      
+        <div class="sales-boxes">
+          <div class="recent-sales box">
+            <div class="title"><h2>View Posted</h2></div><br>
+            <form action="">
+                
                 <div class="article-form">
-
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>Post Title</th>
-                                <th>Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>New way of getting something scholarship in USA</td>
-                                <td>
-                                    <div class="btns">
-                                        <button><img src="./images/carbon_view.png" alt=""></button>
-                                        <button><img src="./images/akar-icons_edit.png" alt=""></button>
-                                        <button><img src="./images/fluent_delete-16-regular.png" alt=""></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                  <table border="1">
+                    <thead>
+                      <tr>
+                        <th>Post Title</th>
+                        <th>Options</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>National competetion of codind and designing software in rwanda</td>
+                        <td>
+                          <div class="btns">
+                            <button>
+                              <img src="./images/carbon_view.png" alt="" title="view"/>
+                            </button>
+                            <button>
+                              <img src="./images/akar-icons_edit.png" alt="" title="edit"/>
+                            </button>
+                            <button>
+                              <img
+                                src="./images/fluent_delete-16-regular.png"
+                                alt="" title="delete"/>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+          </div>
+          <div class="top-sales box">
+              <div class="title"><h3>Tags</h3></div>
+              <ul class="top-sales-details">
+                <li>
+                <a href="#">
+                  
+                  <span class="product">- Html5 & Css3</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="product">- javascript</span>
+                </a>
+              
+              </li>
+              <li>
+                <a href="#">
+                  <span class="product">- Web Design</span>
+                </a>
+              </li>
+              <li>
+                  <a href="#">
+                    <span class="product">- Graphic Design</span>
+                  </a>
+                </li>
+              
+              </ul>
             </div>
         </div>
-    </section>
-    <footer>
-        <h3>copyright &copy; 2022 by D-Designer</h3>
-    </footer>
+      </div>
+  </section> -->
+
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
+
 </body>
-
-
 </html>

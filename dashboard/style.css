@@ -9,6 +9,7 @@
 a{
   text-decoration: none;
   list-style: none;
+  color: #0078ff;
 }
 .ul-resect, .widget-tags ul, .widget-sidebar .list-sidebar, .box-comments .list-comments, .blog-wrapper .post-meta ul, .list-ico, .socials ul {
   list-style: none;
@@ -357,6 +358,7 @@ nav .profile-details i{
   background: #0078ff;
   padding: 4px 12px;
   font-size: 15px;
+
   font-weight: 400;
   border-radius: 4px;
   text-decoration: none;
@@ -468,3 +470,65 @@ nav .profile-details i{
     display: none;
   }
 }
+/* .article-form {
+  background: white;
+  padding: 30px;
+  margin: 40px 200px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.article-form form {
+  display: flex;
+  flex-direction: column;
+}
+.article-form form input[type="text"],
+select,
+input[type="file"] {
+  margin-bottom: 10px;
+  height: 35px;
+}
+.article-form form textarea {
+  margin-bottom: 10px;
+  /* height: 35px; */
+/* }
+.article-form form input[type="submit"] {
+  margin-top: 20px;
+  background-color: #0779e4;
+  border: none;
+  color: white;
+  height: 35px;
+} */ 
+/* @media only screen and (max-width: 992px) {
+  .menu {
+    display: none;
+  }
+  .content {
+    width: 100%;
+    min-height: 90vh;
+  }
+  .mobile-menu {
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+  }
+  .mobile-nav {
+    display: block;
+  }
+  .header {
+    position: fixed;
+  }
+  .body {
+    padding-top: 80px;
+  }
+  .box {
+    flex-direction: column;
+    align-content: space-around;
+  }
+  .box-item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .article-form {
+    margin: 0;
+    margin-top: 10px;
+  }
+} */

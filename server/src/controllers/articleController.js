@@ -1,5 +1,6 @@
 const { articleSchema, updateArticleSchema } = require('../helpers/validation_schema');
 const Article=require('../models/articleModel');
+const imageUpload = require('../helpers/photoUpload');
 
 
 
@@ -15,20 +16,24 @@ exports.getAllArticles = function(req, res) {
     .then(result=>{
         res.json(result)
     })
-    
+
 };
 exports.createNewArticle = async function (req, res)  {
-    // const { title,content }=req.body;
     try {
         const valationResult = await articleSchema.validateAsync(req.body);
-    
+        
         if(req.user.role.toString()=='admin')
         {
-        const article= new Article({
-            title:valationResult.title,
-            content:valationResult.content,
-            postedDate: today
-        })
+            const article= new Article({
+                title:valationResult.title,
+                content:valationResult.content,
+                postedDate: today,
+                imageUrl: '',
+            })
+            if(req.files) {
+            const image = await imageUpload(req);
+            article.imageUrl = image.url
+        }
         article.save()
         .then(result=>{
             res.json(result)
@@ -40,10 +45,10 @@ exports.createNewArticle = async function (req, res)  {
         res.json({message:'User Not Authorized'}).status(401)
     }
     }
-    catch (err) { 
+    catch (err) {
         res.json(err.details[0].message).status(422)
     }
-    
+
 };
 exports.getOneArticle=(req,res)=>{
     const {id}=req.params
@@ -52,10 +57,10 @@ exports.getOneArticle=(req,res)=>{
         if(result)
         res.json(result)
         else 
-        res.json('article doesn\'t exist!').status(404)
+        res.status(404).json('article doesn\'t exist!')
     })
     .catch(error=>{
-        res.status(404).json({error:error.message})
+        res.status(500).json({error:error.message})
     })
 }
 
@@ -73,9 +78,9 @@ exports.updateArticle=async (req,res)=>{
             if(valationResult.content)
             article.content=valationResult.content
             article.save()
-            .then(result=>res.json(result).status(200))
+            .then(result=>res.status(200).json(result))
             .catch(error=>console.log(error))
-            
+
         })
         .catch(error=>{
             res.status(404).json({error:'article doesn\'t exist!'})
@@ -83,7 +88,7 @@ exports.updateArticle=async (req,res)=>{
     }
     else
     {
-        res.json({message:'User Not Authorized'}).status(401)
+        res.status(401).json({message:'User Not Authorized'})
     }
     }
     catch(err){
@@ -105,12 +110,13 @@ exports.deleteArticle=(req,res)=>{
     }
     else
     {
-        res.json({message:'User Not Authorized'}).status(401)
+        res.status(401).json({message:'User Not Authorized'})
     }
 }
 
 exports.commentingOnArticle=(req,res)=>{
-    const {article_id,comment}=req.body
+    const {id}=req.params
+    const {comment}=req.body
     const user_id=req.user._id
 
     const newComment={
@@ -118,44 +124,44 @@ exports.commentingOnArticle=(req,res)=>{
         comment,
         postedDate: today
     }
-    Article.findOne({_id:article_id})
+    Article.findOne({_id:id})
     .then(article=>{
         if(article)
         {
             article.comments.push(newComment);
             article.save()
             .then(result=>res.json(result))
-            .catch(error=>res.json({error:error.message}))
+            .catch(error=>res.status(500).json({error:error.message}))
         }
-        else res.json({error:"article doesn't exist"})
+        else res.status(404).json({error:"article doesn't exist"})
     })
-    .catch(error=>res.json({error:error.message}))
+    .catch(error=>res.status(500).json({error:error.message}))
 }
 
 exports.likeArticle=(req,res)=>{
-    const {article_id}=req.body
+    const {id}=req.params
     const user_id=req.user._id
 
     const newLike={
         user_id,
     }
-    Article.findOne({_id:article_id})
+    Article.findOne({_id:id})
     .then(article=>{
         if(article)
         {
             const found = article.likes.some(el => el.user_id.toString() === user_id.toString());
             if (found) {
                article.likes=article.likes.filter(item=>item.user_id.toString()!==user_id.toString())
-               
-            }else 
+
+            }else
             {
                  article.likes.push(newLike);
             }
             article.save()
             .then(result=>res.json(result))
-            .catch(error=>res.json({error:error.message}))
+            .catch(error=>res.status(500).json({error:error.message}))
         }
-        else res.json({error:"article doesn't exist"}).status(400)
+        else res.status(404).json({error:"article doesn't exist"})
     })
     .catch(error=>res.json({error:error.message}))
 }

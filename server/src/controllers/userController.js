@@ -9,7 +9,7 @@ const createNewUser= async(req,res)=>{
         const valationResult = await createUserSchema.validateAsync(req.body);
         const userExist=await User.findOne({email:valationResult.email})
         if(userExist)
-        res.json({message:"user email already exist"}).status(400)
+        res.status(400).json({message:"user email already exist"})
         else{
             const salt=await bcrypt.genSalt(10)
             const hashedPassword=await bcrypt.hash(valationResult.password,salt)
@@ -17,10 +17,10 @@ const createNewUser= async(req,res)=>{
             username:valationResult.username,
             email:valationResult.email,
             password:hashedPassword,
-            role:'visitor'
+            role:'admin'
         })
         user.save()
-        .then(user=>res.json({
+        .then(user=>res.status(201).json({
             id:user._id,
             username:user.username,
             email:user.email,

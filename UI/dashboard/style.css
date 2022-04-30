@@ -9,9 +9,8 @@
 a{
   text-decoration: none;
   list-style: none;
-  color: #2697FF;
+  color: #0078ff;
 }
-
 .ul-resect, .widget-tags ul, .widget-sidebar .list-sidebar, .box-comments .list-comments, .blog-wrapper .post-meta ul, .list-ico, .socials ul {
   list-style: none;
   padding-left: 0;
@@ -43,7 +42,7 @@ a{
   padding-left: 25px;
 }
 .box-comments .list-comments a {
-  color: #063d7c;
+  color: #0078ff;
 }
 .box-comments .list-comments span {
   color: #1e1e1e;
@@ -54,9 +53,9 @@ a{
   justify-content: space-around;
 }
 .btns button {
-  background-color:transparent;
-  border:none;
- 
+  background-color: transparent;
+  border: none;
+  /* width: 10px; */
   cursor: pointer;
 }
 .btns button img {
@@ -66,7 +65,7 @@ a{
   position: fixed;
   height: 100%;
   width: 240px;
-  background: #063d7c;
+  background: #0078ff;
   transition: all 0.5s ease;
 }
 .sidebar.active{
@@ -106,10 +105,10 @@ a{
   transition: all 0.4s ease;
 }
 .sidebar .nav-links li a.active{
-  background: #063d7c;
+  background: #0078ff;
 }
 .sidebar .nav-links li a:hover{
-  background: #063d7c;
+  background: #0078ff;
 }
 .sidebar .nav-links li i{
   min-width: 60px;
@@ -144,7 +143,7 @@ a{
   display: flex;
   justify-content: space-between;
   height: 80px;
-  background: #063d7c;
+  background: #0078ff;
   color: #fff;
   display: flex;
   align-items: center;
@@ -356,7 +355,7 @@ nav .profile-details i{
 }
 .sales-boxes .box .button a{
   color: #fff;
-  background: #063d7c;
+  background: #0078ff;
   padding: 4px 12px;
   font-size: 15px;
 
@@ -366,7 +365,7 @@ nav .profile-details i{
   transition: all 0.3s ease;
 }
 .sales-boxes .box .button a:hover{
-  background:  #063d7c;
+  background:  #0078ff;
 }
 
 /* Right box */

@@ -11,10 +11,10 @@ const sendMessage=async (req,res)=>{
     })
     message.save()
     .then(result=>{
-        res.json({message:'message sent successful'})
+        res.status(200).json({message:'message sent successful'})
     })
   } catch (error) {
-      res.json({error})
+      res.status(500).json({error})
   }
 }
 

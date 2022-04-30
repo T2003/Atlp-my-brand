@@ -14,9 +14,9 @@ router.patch('/update/:id',protect,updateArticle)
 
 router.delete('/delete/:id',protect,deleteArticle)
 
-router.post('/comment',protect,commentingOnArticle)
+router.post('/comment/:id',protect,commentingOnArticle)
 
-router.post('/like',protect,likeArticle)
+router.post('/like/:id',protect,likeArticle)
 
 
 module.exports = router;

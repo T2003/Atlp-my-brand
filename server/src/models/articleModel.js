@@ -1,3 +1,4 @@
+const { string } = require("joi")
 const mongoose = require("mongoose")
 
 const schema = mongoose.Schema({
@@ -11,6 +12,9 @@ const schema = mongoose.Schema({
 		required:[true,'Please add a content'],
 	},
 	postedDate:String,
+	imageUrl: {
+		type: String,
+	},
 	comments:[{
 		user_id:{
 			type: mongoose.Schema.Types.ObjectId,

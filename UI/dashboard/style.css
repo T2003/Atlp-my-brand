@@ -9,7 +9,9 @@
 a{
   text-decoration: none;
   list-style: none;
+
   color: #0078ff;
+
 }
 .ul-resect, .widget-tags ul, .widget-sidebar .list-sidebar, .box-comments .list-comments, .blog-wrapper .post-meta ul, .list-ico, .socials ul {
   list-style: none;

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> D-Designer | Dashboard </title>
+    <link rel="stylesheet" href="style.css">
+ 
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+         
+     </style>
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+        <i class='bx bx-user-circle' title="D-Designer"></i>
+      <span class="logo_name">D-Designer</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+            <a href="profile.html">
+              <i class=' bx bx-user-circle' ></i>
+              <span class="links_name">Profile</span>
+            </a>
+          </li>
+        <li>
+          <a href="new-post.html">
+            <i class=' bx bx-add-to-queue' ></i>
+            <span class="links_name">New Post</span>
+          </a>
+        </li>
+        <li>
+          <a href="message.html">
+            <i class='bx bx-message-detail' ></i>
+            <span class="links_name">Messages</span>
+          </a>
+        </li>
+        <li>
+          <a href="setting.html">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="#">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard"></span>
+      </div>
+      <div class="">
+        <h2>View Posted Blog</h2>
+      </div>
+      <div class="profile-details">
+        <img src="assets/img/e.jpg" alt="">
+        <span class="admin_name">Daniel T</span>
+        <a href="setting.html"><i class='bx bx-cog' title="setting" style="cursor:pointer;"></i></a>
+        <a href="index.html"><i class='bx bx-log-out' title="logout" style="cursor: pointer;"></i></a>
+      </div>
+    </nav>
+
+    <div class="home-content">
+      
+        <div class="sales-boxes">
+          <div class="recent-sales box">
+            <div class="title"><h2>View Posted</h2></div><br>
+            <form action="">
+                
+                <div class="article-form">
+                  <table border="1">
+                    <thead>
+                      <tr>
+                        <th>Post Title</th>
+                        <th>Options</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>National competetion of codind and designing software in rwanda</td>
+                        <td>
+                          <div class="btns">
+
+                            
+                              <a href="viewposted.html"><button type="button" ><img src="images/carbon_view.png" title="view"></button></a> 
+                           
+                           
+                            
+                              <a href="edit-post.html"><button type="button" ><img src="images/akar-icons_edit.png" title="edit"></button></a> 
+                              
+                                <a href="edit-post.html"><button type="button" ><img src="images/fluent_delete-16-regular.png" title="delete"></button></a> 
+                             
+                            <button>
+                             <a href="viewposted.html"><img src="./images/carbon_view.png" alt="" title="view"/></a> 
+                            </button>
+                            <button>
+                              <a href="edit-post.html"><img src="./images/akar-icons_edit.png" alt="" title="edit"/></a>
+                            </button>
+                            <button>
+                              <a href="view-post.html"><img
+                                src="./images/fluent_delete-16-regular.png"
+                                alt="" title="delete"/></a>  
+                            </button>
+
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+          </div>
+          <div class="top-sales box">
+              <div class="title"><h3>Tags</h3></div>
+              <ul class="top-sales-details">
+                <li>
+                <a href="#">
+                  
+                  <span class="product">- Html5 & Css3</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="product">- javascript</span>
+                </a>
+              
+              </li>
+              <li>
+                <a href="#">
+                  <span class="product">- Web Design</span>
+                </a>
+              </li>
+              <li>
+                  <a href="#">
+                    <span class="product">- Graphic Design</span>
+                  </a>
+                </li>
+              
+              </ul>
+            </div>
+        </div>
+      </div>
+  </section> -->
+
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
+
+</body>
+</html>

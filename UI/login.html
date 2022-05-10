@@ -72,16 +72,16 @@
 					<div class="field-group">
 						<span class="fa fa-user" aria-hidden="true"></span>
 						<div class="wthree-field">
-							<input name="text1" id="text1" type="text" value="" placeholder="Username" required>
+							<input name="text1" id="email" type="text" value="" placeholder="Username" required>
 						</div>
-						<!-- <small>Error message</small> -->
+						<small>Error message</small>
 					</div>
 					<div class="field-group">
 						<span class="fa fa-lock" aria-hidden="true"></span>
 						<div class="wthree-field">
-							<input name="password" id="myInput" type="Password" placeholder="Password">
+							<input name="password" id="password" type="Password" placeholder="Password">
 						</div>
-						<!-- <small>Error message</small> -->
+						<small>Error message</small>
 					</div>
 					<div class="wthree-field">
 						<button type="submit" class="btn">Login</button>
@@ -138,8 +138,56 @@
 		</div>
     </div>
 </section>
-<script src="app.js"></script>   
-<script src="validate-login.js"></script>  
+<script>
+    document.getElementById("form-login").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify({
+        "email": email,
+        "password": password
+      });
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+
+      fetch("https://my-brand-app-v1.herokuapp.com/api/users/login", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result)
+            localStorage.setItem("loginedUser", JSON.stringify(result));
+            if (result.role == "admin") {
+              location.href = "./dashboard";
+            } else {
+              location.href = "./index.html";
+            }
+          
+          
+          
+          
+		 } )
+        .catch(error => console.log('error', error));
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+ 
 </body>
 
 </html>

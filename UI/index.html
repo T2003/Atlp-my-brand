@@ -439,100 +439,9 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card card-blog">
-            <div class="card-img">
-              <a href="blog-single.html"><img src="assets/img/g.jpg" alt="" class="img-fluid"></a>
-            </div>
-            <div class="card-body">
-              <div class="card-category-box">
-                <div class="card-category">
-                  <h6 class="category">Wed Development</h6>
-                </div>
-              </div>
-              <h3 class="card-title"><a href="blog-single.html">See more ideas about Develops</a></h3>
-              <p class="card-description">
-                I’m Daniel [D-Designer] working on Grapphic Design, 
-                Web Design, Web Re-design, Apps building, Illustrations,
-                 Videographer, Photographer and Editing.
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="post-author">
-                <a href="#">
-                  <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                  <span class="author">Daniel Designer</span>
-                </a>
-              </div>
-              <div class="post-date">
-                <span class="bi bi-clock"></span> 10 min
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-blog">
-            <div class="card-img">
-              <a href="blog-single.html"><img src="assets/img/g.jpg" alt="" class="img-fluid"></a>
-            </div>
-            <div class="card-body">
-              <div class="card-category-box">
-                <div class="card-category">
-                  <h6 class="category">Photography</h6>
-                </div>
-              </div>
-              <h3 class="card-title"><a href="blog-single.html">See more ideas about Shooting</a></h3>
-              <p class="card-description">
-                I’m Daniel [D-Designer] working on Grapphic Design, 
-                Web Design, Web Re-design, Apps building, Illustrations,
-                 Videographer, Photographer and Editing.
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="post-author">
-                <a href="#">
-                  <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                  <span class="author">Daniel Designer</span>
-                </a>
-              </div>
-              <div class="post-date">
-                <span class="bi bi-clock"></span> 10 min
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-blog">
-            <div class="card-img">
-              <a href="blog-single.html"><img src="assets/img/g.jpg" alt="" class="img-fluid"></a>
-            </div>
-            <div class="card-body">
-              <div class="card-category-box">
-                <div class="card-category">
-                  <h6 class="category">Web Design</h6>
-                </div>
-              </div>
-              <h3 class="card-title"><a href="blog-single.html">See more ideas about Designing</a></h3>
-              <p class="card-description">
-                I’m Daniel [D-Designer] working on Grapphic Design, 
-                Web Design, Web Re-design, Apps building, Illustrations,
-                 Videographer, Photographer and Editing.
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="post-author">
-                <a href="#">
-                  <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                  <span class="author">Daniel Designer</span>
-                </a>
-              </div>
-              <div class="post-date">
-                <span class="bi bi-clock"></span> 10 min
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="row" id="blog-conten">
+        
+
       </div>
     </div>
   </section><!-- End Blog Section -->
@@ -621,6 +530,7 @@
       </div>
     </div>
   </section>
+
   <!-- ======= Footer ======= -->
   <footer>
     <div class="container">
@@ -649,7 +559,55 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js">
+  </script>
+  <script>
+    var article = document.getElementById('blog-conten');
+    var datatodisplay = ""
+    var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZkMjM0NTJkNTNjMzZlNmNlMzYxNyIsImlhdCI6MTY1MjE1OTY2MiwiZXhwIjoxNjU0NzUxNjYyfQ.iJuMr7Oe0gJtc3PVMbiwOl4yd0peL4M3Kr8tNSYy8m8");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://my-brand-app-v1.herokuapp.com/api/articles/", requestOptions)
+  .then(response => response.json())
+  .then(result => {console.log(result)
+result.forEach(element => {
+    datatodisplay += `<div class="col-md-4">
+          <div class="card card-blog">
+            <div class="card-img">
+              <a href="blog-single.html"><img src="${element.imageUrl}" alt="" class="img-fluid"></a>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title" ><a href="blog-single.html">${element.title}</a></h3>
+              <p class="card-description">
+                ${element.content}
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="post-author">
+                <a href="#">
+                  <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
+                  <span class="author">Daniel Designer</span>
+                </a>
+              </div>
+              <div class="post-date">
+                <span class="bi bi-clock"></span> 10 min
+              </div>
+            </div>
+          </div>
+        </div>`
+  });
+  article.innerHTML =datatodisplay
+
+  })
+
+  .catch(error => console.log('error', error));
+  </script>
 
 </body>
 

@@ -62,7 +62,7 @@ async function loginUser(){
      localStorage.setItem('tokens', JSON.stringify(tokens))
 
      // redirect to admin panel
-     window.location.href="index.html"
+     window.location.href="admin.html"
 
     }else{
        

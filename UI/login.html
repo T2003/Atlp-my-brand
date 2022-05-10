@@ -1,9 +1,4 @@
-<!--
-	Author: W3layouts
-	Author URL: http://w3layouts.com
-	License: Creative Commons Attribution 3.0 Unported
-	License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html lang="zxx">
 <!-- Head -->
@@ -72,18 +67,21 @@
 				<span class="fa fa-user-circle" aria-hidden="true"></span>
 			</div>
 			<div class="content-bottom">
-				<form action="#" method="post">
+				<!-- <form action="#" method="post" id="form-login"> -->
+					<form action="" class="site-form" id="form-login"></form>
 					<div class="field-group">
 						<span class="fa fa-user" aria-hidden="true"></span>
 						<div class="wthree-field">
 							<input name="text1" id="text1" type="text" value="" placeholder="Username" required>
 						</div>
+						<small>Error message</small>
 					</div>
 					<div class="field-group">
 						<span class="fa fa-lock" aria-hidden="true"></span>
 						<div class="wthree-field">
 							<input name="password" id="myInput" type="Password" placeholder="Password">
 						</div>
+						<small>Error message</small>
 					</div>
 					<div class="wthree-field">
 						<button type="submit" class="btn">Enter As Admin</button>
@@ -140,7 +138,8 @@
 		</div>
     </div>
 </section>
-
+<script src="app.js"></script>   
+<script src="validate-login.js"></script>  
 </body>
-<!-- //Body -->
+
 </html>

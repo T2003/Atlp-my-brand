@@ -17,7 +17,7 @@
     </div>
       <ul class="nav-links">
         <li>
-          <a href="index.html" class="active">
+          <a href="admin.html" class="active">
             <i class='bx bx-grid-alt' ></i>
             <span class="links_name">Dashboard</span>
           </a>
@@ -67,7 +67,7 @@
         <img src="assets/img/e.jpg" alt="">
         <span class="admin_name">Daniel T</span>
         <a href="setting.html"><i class='bx bx-cog' title="setting" style="cursor:pointer;"></i></a>
-        <a href="index.html"><i class='bx bx-log-out' title="logout" style="cursor: pointer;"></i></a>
+        <a href="admin.html"><i class='bx bx-log-out' title="logout" style="cursor: pointer;"></i></a>
       </div>
     </nav>
 
@@ -75,30 +75,26 @@
       
       <div class="sales-boxes">
         <div class="recent-sales box">
+          <div class="article-form">
+            
           <div class="title"><h2>Make New Post</h2></div><br>
-          <form action="">
+          <form action="" id="AddArticleForm" enctype="multipart/form-data" create-form>
             <div class="content">
               <div class="article-form">
                 
                   <h4>Title</h4>
-                  <input type="text" placeholder="Article Title" style=" 
-                  box-shadow: 3px 4px 5px 0px;  height: 1cm; width: 7cm;"><br><br>
+                  <input type="text" id="title" name="title" placeholder="  Article Title" required><br><br>
                   <h4>Cover Image</h4>
-                  <input type="file" ><br><br>
+                  <input type="file" id="file" name="image"><br><br>
                   <h4>Body</h4>
-                  <textarea
-                    type="text"
-                    placeholder="body Title"
-                    rows="8" style=" 
-                    box-shadow: 3px 4px 5px 0px;  width: 7cm;"                  ></textarea>
+                  <textarea type="text" placeholder="body Title" rows="5" id="body" name="body" required></textarea>
                   
                 
               </div>
-            </div><br><br>
-            <div class="button">
-                <a href="#">Submit</a>
-              </div>
-        </form>
+            </div><br>
+              <input type="submit" value="New" id="submitBtn" />
+           </form>
+         </div>
         </div>
         <div class="top-sales box">
             <div class="title"><h3>Tags</h3></div>
@@ -143,6 +139,52 @@ sidebarBtn.onclick = function() {
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
  </script>
+<script>
+   const postForm = document.querySelector('[create-form]');
 
+document.getElementById("file").required = ""
+
+document
+  .getElementById("AddArticleForm")
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log('here')
+    const title = document.getElementById("title").value;
+    const body = CKEDITOR.instances.body.getData();
+    const tag = document.getElementById("tag").value;
+    const image = document.getElementById("file");
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${user.token}`);
+
+    var formdata = new FormData();
+    formdata.append("title", "this is testing blog article title 2");
+    formdata.append("content", "this is testing blog article title content 2");
+    // formdata.append("photo", image.files[0], "/C:/Users/ALU TECH TEAM/Desktop/55650162.jpg");
+
+    var raw = JSON.stringify({
+      "title": title,
+      "content": body
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+  fetch("https://my-brand-app-v1.herokuapp.com/api/articles/add", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        window.open("./view-post.html", "_self");
+      })
+      .catch(error => console.log('error', error));;
+
+    // window.open("./view-article.html", "_self");
+    // console.log(file)
+  });
+</script>
 </body>
 </html>

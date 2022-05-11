@@ -580,7 +580,7 @@ result.forEach(element => {
     datatodisplay += `<div class="col-md-4">
           <div class="card card-blog">
             <div class="card-img">
-              <a href="blog-single.html"><img src="${element.imageUrl}" alt="" class="img-fluid"></a>
+              <a href="blog-single.html"><img src="${element.imageUrl}" alt="" class="img-fluid" style="width:10cm; height:7cm"></a>
             </div>
             <div class="card-body">
               <h3 class="card-title" ><a href="blog-single.html">${element.title}</a></h3>
@@ -596,7 +596,7 @@ result.forEach(element => {
                 </a>
               </div>
               <div class="post-date">
-                <span class="bi bi-clock"></span> 10 min
+                <span class="bi bi-calendar4"></span> ${element.postedDate}
               </div>
             </div>
           </div>

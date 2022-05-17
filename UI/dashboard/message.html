@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -26,12 +22,7 @@
             <span class="links_name">Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="profile.html">
-            <i class=' bx bx-user-circle' ></i>
-            <span class="links_name">Profile</span>
-          </a>
-        </li>
+       
         <li>
           <a href="new-post.html">
             <i class=' bx bx-add-to-queue' ></i>
@@ -42,13 +33,6 @@
           <a href="view-post.html">
             <i class='bx bx-show-alt' ></i>
             <span class="links_name">View post</span>
-          </a>
-        </li>
-       
-        <li>
-          <a href="setting.html">
-            <i class='bx bx-cog' ></i>
-            <span class="links_name">Setting</span>
           </a>
         </li>
         <li class="log_out">
@@ -72,21 +56,18 @@
         <img src="assets/img/e.jpg" alt="">
         <span class="admin_name">Daniel T</span>
         <a href="setting.html"><i class='bx bx-cog' title="setting" style="cursor:pointer;"></i></a>
-        <a href="admin.html"><i class='bx bx-log-out' title="logout" style="cursor: pointer;"></i></a>
+        <a href="index.html"><i class='bx bx-log-out' title="logout" style="cursor: pointer;"></i></a>
       </div>
     </nav>
     <div class="home-content">
       
       <div class="sales-boxes">
         <div class="recent-sales box">
-          <div class="title"><h2>Messages (100)</h2></div><br>
+          <div class="title"><h2>All Messages</h2></div><br>
           <form action="">
             <div class="box-comments">
-              <div class="title-box-2">
-                <h4 class="title-comments title-left">Recent Messages</h4><br>
-              </div>
-              <ul class="list-comments">
-                <li>
+              <ul class="list-comments" id="blog-message">
+                <!-- <li>
                   <div class="comment-avatar">
                     <img src="assets/img/e.jpg" alt="">
                   </div>
@@ -100,8 +81,8 @@
                     </p>
                     <a href="#">Reply</a>
                   </div>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                   <div class="comment-avatar">
                     <img src="assets/img/e.jpg" alt="">
                   </div>
@@ -116,12 +97,10 @@
                     </p>
                     <a href="">Reply</a>
                   </div>
-                </li>
+                </li> -->
               </ul>
             </div>
-            <div class="button">
-                <a href="#">See All</a>
-              </div>
+            
         </form>
         </div>
         <div class="top-sales box">
@@ -175,6 +154,40 @@ sidebarBtn.onclick = function() {
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
  </script>
+<script>
+  var article = document.getElementById('blog-message');
+  var datatodisplay = ""
+  var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2EwMGVjMTk2N2VhMTk1ZGRmMjMzYSIsImlhdCI6MTY1MjE2Mjc5NiwiZXhwIjoxNjU0NzU0Nzk2fQ.4Q5iAHTcpJAq8UXDdm3hEws2PEU3Io1Pit2COdCNvLU");
 
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://my-brand-app-v1.herokuapp.com/api/message/", requestOptions)
+  .then(response => response.json())
+  .then(result => console.log(result))
+  result.messages.forEach(element => {
+  datatodisplay += `
+  <li>
+                  <div class="comment-details">
+                    <h4 class="comment-author">${element.name}</h4>
+                    <span>18 Jan 2022</span>
+                    <p>
+                      ${element.content}
+                    </p>
+                    <div class="feedback-footer">
+               <a href='mailto:${element.email}' target='blank'> <button class="reply">Reply</button></a>
+                <button class="delete" onclick="deleteMessage('${element._id}')">Delete</button>
+              </div>
+                  </div>
+                </li>`
+});
+article.innerHTML =datatodisplay
+
+  .catch(error => console.log('error', error));
+</script>
 </body>
 </html>

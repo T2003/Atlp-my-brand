@@ -166,7 +166,7 @@
           console.log(result)
             localStorage.setItem("loginedUser", JSON.stringify(result));
             if (result.role == "admin") {
-              location.href = "./dashboard";
+              location.href = "./dashboard/admin.html";
             } else {
               location.href = "./index.html";
             }

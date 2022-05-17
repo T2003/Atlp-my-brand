@@ -23,12 +23,6 @@
           </a>
         </li>
         <li>
-          <a href="profile.html">
-            <i class='bx bx-user-circle' ></i>
-            <span class="links_name">Profile</span>
-          </a>
-        </li>
-        <li>
           <a href="new-post.html">
             <i class='bx bx-add-to-queue' ></i>
             <span class="links_name">New Post</span>
@@ -47,17 +41,9 @@
             <span class="links_name">Messages</span>
           </a>
         </li>
-        <li>
-          <a href="setting.html">
-            <i class='bx bx-cog' ></i>
-            <span class="links_name">Setting</span>
-          </a>
-        </li>
+        
         <li class="log_out">
-          <a href="#">
-            <i class='bx bx-log-out'></i>
-            <span class="links_name">Log out</span>
-          </a>
+          <a href="#" id="logoutBtn"><i class='bx bx-log-out' title="logout" style="cursor: pointer;" onclick="logout()"></i><span class="links_name">Log out</span></a>
         </li>
       </ul>
   </div>
@@ -73,8 +59,8 @@
       <div class="profile-details">
         <img src="assets/img/e.jpg" alt="">
         <span class="admin_name">Daniel T</span>
-        <a href="setting.html"><i class='bx bx-cog' title="setting" style="cursor:pointer;"></i></a>
-        <a href="index.html"><i class='bx bx-log-out' title="logout" style="cursor: pointer;"></i></a>
+
+        <a href="#" id="logoutBtn"><i class='bx bx-log-out' title="logout" style="cursor: pointer;" onclick="logout()"></i></a>
       </div>
     </nav>
 
@@ -83,7 +69,7 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Recent Post</div>
-            <div class="number">3</div>
+            <!-- <div class="number">3</div> -->
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <a href="view-post.html"><span class="text">View Posts</span></a>
@@ -94,7 +80,7 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic">All Messages</div>
-            <div class="number">100</div>
+            <!-- <div class="number">100</div> -->
             <div class="indicator">
                 <!-- <i class='bx bx-down-arrow-alt down'></i> -->
                 <i class='bx bx-up-arrow-alt'></i>
@@ -106,7 +92,7 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic">All Comments</div>
-            <div class="number">123</div>
+            <!-- <div class="number">123</div> -->
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <a href="#"><span class="text">view all comments</span></a>
@@ -118,7 +104,7 @@
 
       <div class="sales-boxes">
         <!-- <div class="title"><h3>Recent Posts</h3></div> -->
-        <div class="recent-sales box" id="blog-conten">
+        <div class="recent-sales box" id="blog-content">
           
         </div>
         <div class="top-sales box">
@@ -159,8 +145,8 @@
         </div>
       </div>
     </div>
-  </section> -->
-
+  </section> 
+  <script src="./javascript.js"></script>
   <script>
    let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -173,7 +159,7 @@ sidebarBtn.onclick = function() {
 }
  </script>
 <script>
-  var article = document.getElementById('blog-conten');
+  var article = document.getElementById('blog-content');
   var datatodisplay = ""
   var myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZkMjM0NTJkNTNjMzZlNmNlMzYxNyIsImlhdCI6MTY1MjE1OTY2MiwiZXhwIjoxNjU0NzUxNjYyfQ.iJuMr7Oe0gJtc3PVMbiwOl4yd0peL4M3Kr8tNSYy8m8");

@@ -17,17 +17,12 @@
     </div>
       <ul class="nav-links">
         <li>
-          <a href="index.html" class="active">
+          <a href="admin.html" class="active">
             <i class='bx bx-grid-alt' ></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="profile.html">
-            <i class=' bx bx-user-circle' ></i>
-            <span class="links_name">Profile</span>
-          </a>
-        </li>
+
         <li>
           <a href="new-post.html">
             <i class=' bx bx-add-to-queue' ></i>
@@ -40,17 +35,8 @@
             <span class="links_name">View post</span>
           </a>
         </li>
-       
-        <li>
-          <a href="setting.html">
-            <i class='bx bx-cog' ></i>
-            <span class="links_name">Setting</span>
-          </a>
-        </li>
         <li class="log_out">
-          <a href="#">
-            <i class='bx bx-log-out'></i>
-            <span class="links_name">Log out</span>
+          <a href="#" id="logoutBtn"><i class='bx bx-log-out' title="logout" style="cursor: pointer;" onclick="logout()"></i><span class="links_name">Log out</span>
           </a>
         </li>
       </ul>
@@ -67,8 +53,8 @@
       <div class="profile-details">
         <img src="assets/img/e.jpg" alt="">
         <span class="admin_name">Daniel T</span>
-        <a href="setting.html"><i class='bx bx-cog' title="setting" style="cursor:pointer;"></i></a>
-        <a href="index.html"><i class='bx bx-log-out' title="logout" style="cursor: pointer;"></i></a>
+     
+        <a href="#" id="logoutBtn"><i class='bx bx-log-out' title="logout" style="cursor: pointer;" onclick="logout()"></i></a>
       </div>
     </nav>
     <div class="home-content">
@@ -77,36 +63,13 @@
         <div class="recent-sales box">
           <div class="title"><h2>View a post</h2></div><br>
           <form action="">
-            <div class="box-comments">
+            <div class="box-comments" id="viewonepost">
               <!-- <div class="title-box-2">
                 <h4 class="title-comments title-left">Recent Messages</h4><br>
               </div> -->
-              <div class="comment-avatar">
-                <img src="assets/img/e.jpg" alt="">
-              </div>
-                  <div class="comment-details">
-                    <b>Title:</b>  <a href="#">Website templates HTML5-CSS3</a> 
-                   <br><br>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                      ipsam temporibus maiores
-                      quae natus libero optio, at qui beatae ducimus placeat debitis voluptates amet corporis.
-                    </p>
-                    
-                  </div>
+             
                 
             </div>
-            <br><br>
-            <div class="btns">
-                <button>
-                  <a href="edit-post.html"><img src="./images/akar-icons_edit.png" alt="" title="edit"/></a>
-                </button>
-                <button>
-                <a href="view-post.html"><img
-                    src="./images/fluent_delete-16-regular.png"
-                    alt="" title="delete"/></a>  
-                </button>
-              </div>
         </form>
         </div>
         <div class="top-sales box">
@@ -160,6 +123,101 @@ sidebarBtn.onclick = function() {
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
  </script>
+<script>
+  var article = document.getElementById('viewonepost');
+  var datatodisplay = ""
+  var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZkMjM0NTJkNTNjMzZlNmNlMzYxNyIsImlhdCI6MTY1MjE1OTY2MiwiZXhwIjoxNjU0NzUxNjYyfQ.iJuMr7Oe0gJtc3PVMbiwOl4yd0peL4M3Kr8tNSYy8m8");
 
+var requestOptions = {
+method: 'GET',
+headers: myHeaders,
+redirect: 'follow'
+};
+
+fetch(`https://my-brand-app-v1.herokuapp.com/api/articles/${id}`, requestOptions)
+.then(response => response.json())
+.then(result => {console.log(result)
+result.forEach(element => {
+  datatodisplay += `
+  <div class="sales-details">
+            <ul class="details">
+              <li class="topic"><h4>Date</h4></li>
+              <li><a href="#">${element.postedDate}</a></li>
+            
+            </ul> <ul class="details">
+            <li class="topic"><h4>Title</h4></li>
+            <li><a href="#">${element.title}</a></li>
+           
+            </ul>
+            <ul class="details">
+              <li class="topic"><h4>Image</h4></li>
+              <li> <a href="#"><img src="${element.imageUrl}" alt="" class="img-fluid" style="width:2cm; height:2cm"></a></li>
+            </ul>
+        
+          </div>
+          <div class="button">
+            <a href="view-post.html">View Post</a>
+          </div>`
+});
+article.innerHTML =datatodisplay
+
+})
+
+.catch(error => console.log('error', error));
+</script>
+<script>
+  const user = JSON.parse(localStorage.getItem('loginedUser'))
+  let articles;
+  const getArticleOnDashbaord = () => {
+    var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("https://my-brand-app-v1.herokuapp.com/api/articles/6279fdec1967ea195ddf231e", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
+  }
+  getArticleOnDashbaord()
+
+  const deleteArticle = id => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${user.token}`);
+
+    var requestOptions = {
+      method: 'DELETE',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    fetch(`https://my-brand-app-api.herokuapp.com/api/articles/delete/${id}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        getArticleOnDashbaord()
+      })
+      .catch(error => console.log('error', error));
+
+  }
+
+  const update = (id, title, content) => {
+    const article = {
+      id, title, content
+    }
+    localStorage.setItem("updateArticle", JSON.stringify(article));
+    // // location.href = './'
+    // console.log(article)
+    // console.log(JSON.parse(localStorage.getItem("updateArticle")));
+  }
+  localStorage.removeItem('updateArticle')
+
+
+  const readMore = article => {
+    localStorage.setItem('articleToRead', article);
+  }
+</script>
 </body>
 </html>

@@ -20,17 +20,12 @@
     </div>
       <ul class="nav-links">
         <li>
-          <a href="index.html" class="active">
+          <a href="admin.html" class="active">
             <i class='bx bx-grid-alt' ></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
-        <li>
-            <a href="profile.html">
-              <i class=' bx bx-user-circle' ></i>
-              <span class="links_name">Profile</span>
-            </a>
-          </li>
+        
         <li>
           <a href="new-post.html">
             <i class=' bx bx-add-to-queue' ></i>
@@ -43,16 +38,9 @@
             <span class="links_name">Messages</span>
           </a>
         </li>
-        <li>
-          <a href="setting.html">
-            <i class='bx bx-cog' ></i>
-            <span class="links_name">Setting</span>
-          </a>
-        </li>
+        
         <li class="log_out">
-          <a href="#">
-            <i class='bx bx-log-out'></i>
-            <span class="links_name">Log out</span>
+          <a href="#" id="logoutBtn"><i class='bx bx-log-out' title="logout" style="cursor: pointer;" onclick="logout()"></i><span class="links_name">Log out</span>
           </a>
         </li>
       </ul>
@@ -64,100 +52,66 @@
         <span class="dashboard"></span>
       </div>
       <div class="">
-        <h2>View Posted Blog</h2>
+        <h2>Posted Articles</h2>
       </div>
       <div class="profile-details">
         <img src="assets/img/e.jpg" alt="">
         <span class="admin_name">Daniel T</span>
-        <a href="setting.html"><i class='bx bx-cog' title="setting" style="cursor:pointer;"></i></a>
-        <a href="index.html"><i class='bx bx-log-out' title="logout" style="cursor: pointer;"></i></a>
+        
+        <a href="#" id="logoutBtn"><i class='bx bx-log-out' title="logout" style="cursor: pointer;" onclick="logout()"></i></a>
       </div>
     </nav>
 
     <div class="home-content">
       
-        <div class="sales-boxes">
-          <div class="recent-sales box">
-            <div class="title"><h2>View Posted</h2></div><br>
-            <form action="">
-                
-                <div class="article-form">
-                  <table border="1">
-                    <thead>
-                      <tr>
-                        <th>Post Title</th>
-                        <th>Options</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>National competetion of codind and designing software in rwanda</td>
-                        <td>
-                          <div class="btns">
-
-                            
-                              <a href="viewposted.html"><button type="button" ><img src="images/carbon_view.png" title="view"></button></a> 
-                           
-                           
-                            
-                              <a href="edit-post.html"><button type="button" ><img src="images/akar-icons_edit.png" title="edit"></button></a> 
-                              
-                                <a href="edit-post.html"><button type="button" ><img src="images/fluent_delete-16-regular.png" title="delete"></button></a> 
-                             
-                            <button>
-                             <a href="viewposted.html"><img src="./images/carbon_view.png" alt="" title="view"/></a> 
-                            </button>
-                            <button>
-                              <a href="edit-post.html"><img src="./images/akar-icons_edit.png" alt="" title="edit"/></a>
-                            </button>
-                            <button>
-                              <a href="view-post.html"><img
-                                src="./images/fluent_delete-16-regular.png"
-                                alt="" title="delete"/></a>  
-                            </button>
-
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-          </div>
-          <div class="top-sales box">
-              <div class="title"><h3>Tags</h3></div>
-              <ul class="top-sales-details">
-                <li>
-                <a href="#">
-                  
-                  <span class="product">- Html5 & Css3</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="product">- javascript</span>
-                </a>
+      <div class="sales-boxes">
+        <!-- <div class="title"><h3>Recent Posts</h3></div> -->
+        <div class="recent-sales box" id="viewpost">
+          
+        </div>
+        <div class="top-sales box">
+          <div class="title"><h3>Tags</h3></div>
+          <ul class="top-sales-details">
+            <li>
+            <a href="#">
               
-              </li>
-              <li>
-                <a href="#">
-                  <span class="product">- Web Design</span>
-                </a>
-              </li>
-              <li>
-                  <a href="#">
-                    <span class="product">- Graphic Design</span>
-                  </a>
-                </li>
-              
-              </ul>
-            </div>
+              <span class="product">- Html5 & Css3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="product">- C++ & PHP</span>
+            </a>
+          
+          </li>
+          <li>
+            <a href="#">
+              <span class="product">- Web Design</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="product">- Photoshoot</span>
+            </a>
+          </li><li>
+            <a href="#">
+              <span class="product">- Business Creation</span>
+            </a>
+          </li><li>
+            <a href="#">
+              <span class="product">- Full Stack Developer</span>
+            </a>
+          </li>
+          
+          </ul>
         </div>
       </div>
-  </section> -->
-
+    </div>
+  </section> 
+  <script src="./javascript.js"></script>
   <script>
    let sidebar = document.querySelector(".sidebar");
-let sidebarBtn = document.querySelector(".sidebarBtn");
+ let sidebarBtn = document.querySelector(".sidebarBtn");
 sidebarBtn.onclick = function() {
   sidebar.classList.toggle("active");
   if(sidebar.classList.contains("active")){
@@ -166,6 +120,85 @@ sidebarBtn.onclick = function() {
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
  </script>
+<script>
+  
+  var article = document.getElementById('viewpost');
+  var datatodisplay = ""
+  var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZkMjM0NTJkNTNjMzZlNmNlMzYxNyIsImlhdCI6MTY1MjE1OTY2MiwiZXhwIjoxNjU0NzUxNjYyfQ.iJuMr7Oe0gJtc3PVMbiwOl4yd0peL4M3Kr8tNSYy8m8");
 
-</body>
-</html>
+var requestOptions = {
+method: 'GET',
+headers: myHeaders,
+redirect: 'follow'
+};
+
+fetch("https://my-brand-app-v1.herokuapp.com/api/articles/", requestOptions)
+.then(response => response.json())
+.then(result => {console.log(result)
+result.forEach(element => {
+  datatodisplay += `
+  <div class="sales-details">
+            <ul class="details">
+              <li class="topic"><h4>Date</h4></li>
+              <li><a href="#">${element.postedDate}</a></li>
+            
+            </ul> <ul class="details">
+            <li class="topic"><h4>Title</h4></li>
+            <li><a href="#">${element.title}</a></li>
+           
+            </ul>
+            <ul class="details">
+              <li class="topic"><h4>Image</h4></li>
+              <li> <a href="#"><img src="${element.imageUrl}" alt="" class="img-fluid" style="width:2cm; height:2cm"></a></li>
+            </ul>
+        
+          </div>
+          <div class="feedback-footer"><a href="viewposted.html"><button class="delete">View</button></a>
+               <a href='mailto:${element.email}' target='blank'> <button class="reply">Update</button></a>
+                <button class="delete" onclick="deleteMessage('${element._id}')">Delete</button>
+              
+          
+            
+          </div>`
+});
+article.innerHTML =datatodisplay
+
+})
+
+.catch(error => console.log('error', error));
+
+    const deleteArticle = id => {
+      var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZkMjM0NTJkNTNjMzZlNmNlMzYxNyIsImlhdCI6MTY1MjE1OTY2MiwiZXhwIjoxNjU0NzUxNjYyfQ.iJuMr7Oe0gJtc3PVMbiwOl4yd0peL4M3Kr8tNSYy8m8");
+
+var requestOptions = {
+  method: 'DELETE',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://my-brand-app-v1.herokuapp.com/api/articles/delete/627bda9718acf4c71d40fa4b", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+    }
+
+    const update = (id, title, content) => {
+      const article = {
+        id, title, content
+      }
+      localStorage.setItem("updateArticle", JSON.stringify(article));
+      // // location.href = './'
+      // console.log(article)
+      // console.log(JSON.parse(localStorage.getItem("updateArticle")));
+    }
+    localStorage.removeItem('updateArticle')
+
+
+    const readMore = article => {
+      localStorage.setItem('articleToRead', article);
+    }
+</script>
+</body></html>
+

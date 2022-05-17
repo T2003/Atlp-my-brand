@@ -13,7 +13,7 @@ const options = {
     title: 'My Brand',
     version: '1.0.0',
     description:
-      'This is the backend api for my portfolio app.',
+      'This is the backend api for my portfolio app.<h6>D-Designer</h6>',
   },
   host: process.env === 'production' ? heroku : local,
   basePath: '/api',
@@ -95,7 +95,7 @@ tags: [
         }, 
         } 
     },
-    '/api/articles/': {
+    '/api/all-articles': {
         get: {
         tags: ['Blog'],
         description: 'Get All Blog Articles',
@@ -111,7 +111,7 @@ tags: [
         }, 
       } 
     },
-    '/api/articles/{id}': {
+    '/api/articles/{article_id}': {
       get: {
         security: [],
       tags: ['Blog'],
@@ -133,7 +133,7 @@ tags: [
       }, 
       } 
   },
-  '/api/articles/add':{
+  '/api/add/article':{
     post:{
       tags:['Blog'],
       description:'Create new blog article',
@@ -142,13 +142,9 @@ tags: [
       ],
       requestBody: {
         content: {
-          'application/json': {
+          'multipart/form-data': {
             schema: {
               $ref: '#/components/schemas/Blog',
-            },
-            example: {
-              title: 'testing blog article title',
-              content: 'testing blog article content',
             },
           },
         },
@@ -167,7 +163,7 @@ tags: [
       }, 
     }
   },
-  '/api/articles/update/{id}':{
+  '/api/update/{article_id}':{
     patch:{
       tags:['Blog'],
       description:'Update blog article',
@@ -208,7 +204,7 @@ tags: [
       }, 
     }
   },
-  '/api/articles/delete/{id}':{
+  '/api/delete/{articleid}':{
     delete:{
       tags:['Blog'],
       description:'Delete blog article',
@@ -245,7 +241,7 @@ tags: [
       }, 
     }
   },
-  '/api/articles/comment/{id}':{
+  '/api/comment/{article_id}':{
     post:{
       tags:['Blog'],
       description:'Comment on article blog article',
@@ -286,7 +282,7 @@ tags: [
       }, 
     }
   },
-  '/api/articles/like/{id}':{
+  '/api/like/{article_id}':{
     post:{
       tags:['Blog'],
       description:'Like on article blog article',
@@ -324,7 +320,7 @@ tags: [
       }, 
     }
   },
-  '/api/message/send/':{
+  '/api/send/message':{
     post:{
       tags:['Message'],
       security:[],
@@ -355,7 +351,7 @@ tags: [
       }, 
     }
   },
-  '/api/message/':{
+  '/api/view/messages':{
     get:{
       tags:['Message'],
       description:'Getting all messages',
@@ -406,10 +402,6 @@ tags: [
         type: 'object',
 
         properties: {
-          id: {
-            type: 'string',
-            description: 'The auto-generated id of the user',
-          },
           title: {
             type: 'string',
             description: "Article title",
@@ -418,22 +410,11 @@ tags: [
             type: 'string',
             description: "Article content",
           },
-          imageUrl: {
+          photo: {
             type: 'string',
             description: "Article image url",
-          },
-          postedDate: {
-            type: 'string',
-            description: "Article posted date ",
-          },
-          comments: {
-            type: 'object',
-            description: "Article Comments",
-          },
-          likes: {
-            type: 'object',
-            description: "Article likes",
-          },
+            format: 'binary'
+          }
       },
     },
       Message: {

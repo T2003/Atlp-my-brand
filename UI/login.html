@@ -1,9 +1,4 @@
-<!--
-	Author: W3layouts
-	Author URL: http://w3layouts.com
-	License: Creative Commons Attribution 3.0 Unported
-	License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html lang="zxx">
 <!-- Head -->
@@ -72,21 +67,24 @@
 				<span class="fa fa-user-circle" aria-hidden="true"></span>
 			</div>
 			<div class="content-bottom">
-				<form action="#" method="post">
+				<!-- <form action="#" method="post" id="form-login"> -->
+					<form action="" class="site-form" id="form-login">
 					<div class="field-group">
 						<span class="fa fa-user" aria-hidden="true"></span>
 						<div class="wthree-field">
-							<input name="text1" id="text1" type="text" value="" placeholder="Username" required>
+							<input name="text1" id="email" type="text" value="" placeholder="Username" required>
 						</div>
+						
 					</div>
 					<div class="field-group">
 						<span class="fa fa-lock" aria-hidden="true"></span>
 						<div class="wthree-field">
-							<input name="password" id="myInput" type="Password" placeholder="Password">
+							<input name="password" id="password" type="Password" placeholder="Password">
 						</div>
+						
 					</div>
 					<div class="wthree-field">
-						<button type="submit" class="btn">Enter As Admin</button>
+						<button type="submit" class="btn">Login</button>
 					</div>
 					<ul class="list-login">
 						<li class="switch-agileits">
@@ -140,7 +138,56 @@
 		</div>
     </div>
 </section>
+<script>
+    document.getElementById("form-login").addEventListener("submit", (e) => {
+      e.preventDefault();
 
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify({
+        "email": email,
+        "password": password
+      });
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+
+      fetch("https://my-brand-app-v1.herokuapp.com/api/users/login", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result)
+            localStorage.setItem("loginedUser", JSON.stringify(result));
+            if (result.role == "admin") {
+              location.href = "./dashboard/admin.html";
+            } else {
+              location.href = "./index.html";
+            }
+          
+          
+          
+          
+		 } )
+        .catch(error => console.log('error', error));
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+ 
 </body>
-<!-- //Body -->
+
 </html>
